@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>SkillSync</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="./explore.html">Explore</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./chat.html">Chat</a>
+      <a href="./profile.html">Profile</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="login.html" class="signup-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h2>Exchange Skills, Not Money</h2>
+    <p>Learn and teach <span id="rotating-text">Web Development</span> in a collaborative student community.</p>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <h2 style="text-align:center;">How It Works</h2>
+    <div class="grid fade-in">
+      <div class="card">
+        <h3>1. Create Your Profile</h3>
+        <p>Add the skills you can teach and the ones you want to learn.</p>
+      </div>
+      <div class="card">
+        <h3>2. Connect with Members</h3>
+        <p>Browse skill offers and requests, then send or accept invites.</p>
+      </div>
+      <div class="card">
+        <h3>3. Exchange Skills</h3>
+        <p>Teach, learn, and track your progress while earning credits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Skills -->
+  <section class="section" style="background:#f3f4f6;" id="popular-skills">
+    <h2 style="text-align:center;">Popular Skills Right Now</h2>
+    <div class="grid fade-in">
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>HTML, CSS, JavaScript — start building websites from scratch.</p>
+      </div>
+      <div class="card">
+        <h3>Public Speaking</h3>
+        <p>Learn to speak confidently in front of an audience.</p>
+      </div>
+      <div class="card">
+        <h3>Graphic Design</h3>
+        <p>Master design tools like Photoshop, Illustrator, and Figma.</p>
+      </div>
+      <div class="card">
+        <h3>Music & Instruments</h3>
+        <p>From guitar to piano, share your love for music.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose SkillSync -->
+  <section class="section" id="why-choose">
+    <h2 style="text-align:center;">Why Choose SkillSync?</h2>
+    <div class="grid fade-in">
+      <div class="card">
+        <h3>Zero Cost Learning</h3>
+        <p>No money involved — trade skills using credits.</p>
+      </div>
+      <div class="card">
+        <h3>Student Community</h3>
+        <p>Connect with like-minded learners and build networks.</p>
+      </div>
+      <div class="card">
+        <h3>Track Progress</h3>
+        <p>Earn badges, see completed sessions, and improve over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section" style="text-align:center; background:#2563eb; color:white;" id="cta">
+    <h2>Ready to Learn and Teach?</h2>
+    <p>Join hundreds of students already exchanging skills for free.</p>
+    <a href="signup.html" class="signup-btn" style="margin:10px;">Sign Up Now</a>
+    <a href="login.html" class="signup-btn" style="background:#fbbf24; color:black; margin:10px;">Login</a>
+  </section>
+
+  <footer>
+    © 2025 SkillSync — Made for student skill sharing 🚀
+  </footer>
+
+  <script >// Smooth scrolling for nav links
+
+// Rotating text effect
+const texts = ["Web Development", "Graphic Design", "Public Speaking", "Music Lessons"];
+let textIndex = 0;
+const rotatingText = document.getElementById("rotating-text");
+
+setInterval(() => {
+  textIndex = (textIndex + 1) % texts.length;
+  rotatingText.textContent = texts[textIndex];
+}, 2000);
+
+// Fade-in animation on scroll
+const fadeElements = document.querySelectorAll(".fade-in");
+
+function checkFade() {
+  fadeElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+    }
+  });
+}
+
+fadeElements.forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = "translateY(20px)";
+  el.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
+});
+
+window.addEventListener("scroll", checkFade);
+window.addEventListener("load", checkFade);
+</script>
+</body>
+</html>

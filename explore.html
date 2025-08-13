@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync | Explore</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .btn {
+      background: #2563eb;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #1e40af;
+    }
+    #searchBox {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      display: block;
+    }
+    .notification {
+      background: #d1fae5;
+      border-left: 5px solid #10b981;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SkillSync</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="chat.html">Chat</a>
+      <a href="profile.html">Profile</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="login.html" class="signup-btn">Login</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <h2 style="text-align:center;">Explore Skills</h2>
+
+    <!-- Search box -->
+    <input type="text" id="searchBox" placeholder="Search skills...">
+
+    <!-- Notifications -->
+    <div id="notifications"></div>
+
+    <div class="grid" id="skillsGrid">
+      <div class="card">
+        <h3>Teach Python</h3>
+        <p>Level: Intermediate<br />Time Slots: Weekends<br />Earn 1 credit/hour</p>
+        <button class="btn" onclick="bookSkill('Teach Python')">Book Session</button>
+      </div>
+      <div class="card">
+        <h3>Learn Graphic Design</h3>
+        <p>Looking for an expert<br />Available: Evenings</p>
+        <button class="btn" onclick="bookSkill('Learn Graphic Design')">Book Session</button>
+      </div>
+      <div class="card">
+        <h3>Teach Guitar</h3>
+        <p>Level: Beginner<br />Online sessions<br />Earn skill badge</p>
+        <button class="btn" onclick="bookSkill('Teach Guitar')">Book Session</button>
+      </div>
+      <div class="card">
+        <h3>Learn Web Development</h3>
+        <p>Looking for mentor<br />Available: Anytime</p>
+        <button class="btn" onclick="bookSkill('Learn Web Development')">Book Session</button>
+      </div>
+      <div class="card">
+        <h3>Teach Cooking</h3>
+        <p>Specialty: Italian<br />Earn 2 credits/hour</p>
+        <button class="btn" onclick="bookSkill('Teach Cooking')">Book Session</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 SkillSync — Made for student skill sharing 🚀
+  </footer>
+
+  <script>
+    // Filter skills dynamically
+    document.getElementById('searchBox').addEventListener('input', function () {
+      let query = this.value.toLowerCase();
+      document.querySelectorAll('#skillsGrid .card').forEach(card => {
+        let text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+
+    // Show notification when booking
+    function bookSkill(skillName) {
+      const notifications = document.getElementById("notifications");
+      const note = document.createElement("div");
+      note.className = "notification";
+      note.textContent = `✅ Successfully booked: ${skillName}`;
+      notifications.prepend(note);
+      setTimeout(() => note.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
