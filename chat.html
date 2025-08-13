@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync | Chat</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chat-container {
+      display: flex;
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .chat-list {
+      width: 30%;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .chat-list h3 {
+      background: #2563eb;
+      color: white;
+      margin: 0;
+      padding: 10px;
+    }
+    .chat-list ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .chat-list li {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    .chat-list li:hover {
+      background: #f3f4f6;
+    }
+    .chat-window {
+      flex: 1;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      max-width: 70%;
+    }
+    .sent {
+      background: #2563eb;
+      color: white;
+      align-self: flex-end;
+    }
+    .received {
+      background: #f3f4f6;
+      color: black;
+      align-self: flex-start;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      outline: none;
+    }
+    .chat-input button {
+      background: #2563eb;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SkillSync</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="chat.html">Chat</a>
+      <a href="profile.html">Profile</a>
+      <a href="signup.html" class="signup-btn">Sign Up</a>
+      <a href="login.html" class="signup-btn">Login</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <h2 style="text-align:center;">Chat Center</h2>
+    <div class="chat-container">
+      <!-- Chat List -->
+      <div class="chat-list">
+        <h3>Chats</h3>
+        <ul>
+          <li onclick="selectChat('John')"><b>John</b><br><small>Hey, excited to learn!</small></li>
+          <li onclick="selectChat('Megha')"><b>Megha</b><br><small>Let's reschedule to Saturday.</small></li>
+          <li onclick="selectChat('Sarah')"><b>Sarah</b><br><small>Can we start next week?</small></li>
+        </ul>
+      </div>
+
+      <!-- Chat Window -->
+      <div class="chat-window">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message received">Select a chat to start messaging</div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Type a message..." disabled>
+          <button onclick="sendMessage()" disabled>Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 SkillSync — Made for student skill sharing 🚀
+  </footer>
+
+  <script>
+    let currentChat = null;
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.querySelector('.chat-input button');
+
+    function selectChat(name) {
+      currentChat = name;
+      chatMessages.innerHTML = `<div class="message received">Chatting with ${name}</div>`;
+      chatInput.disabled = false;
+      sendBtn.disabled = false;
+    }
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (text === "") return;
+      const sentMsg = document.createElement('div');
+      sentMsg.className = 'message sent';
+      sentMsg.textContent = text;
+      chatMessages.appendChild(sentMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      chatInput.value = "";
+
+      // Simulate a reply
+      setTimeout(() => {
+        const reply = document.createElement('div');
+        reply.className = 'message received';
+        reply.textContent = `${currentChat} replied: Got it!`;
+        chatMessages.appendChild(reply);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
